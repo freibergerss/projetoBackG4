@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS dentista(
+id INT auto_increment PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+sobrenome VARCHAR(255) NOT NULL,
+);
