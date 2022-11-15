@@ -23,19 +23,20 @@ class ProjetoBackG4ApplicationTests {
 	}
 
 	@Test
-//	public void salvarCadastroPaciente() throws SQLException {
-//		Paciente paciente1 = new Paciente();
-//		paciente1.setNome("Sasá");
-//		paciente1.setSobrenome("Freiberger");
-//		paciente1.setRg("25874992-4");
-//		paciente1.setEndereco("Rua Pequeno Principe");
-//		paciente1.setDataCadastro(LocalDate.now());
-//
-//		pacienteService.create(paciente1);
-//		Assertions.assertTrue(paciente1.getIdPaciente() > 0);
-//		System.out.println("Cadastrando o paciente " + paciente1.getNome() + " com o ID " + paciente1.getIdPaciente());
-//	}
+	public void salvarCadastroPaciente() throws SQLException {
+		Paciente paciente1 = new Paciente();
+		paciente1.setNome("Roger");
+		paciente1.setSobrenome("Ricco");
+		paciente1.setRg("12354698-7");
+		paciente1.setEndereco("Rua Principe pequeno");
+		paciente1.setDataCadastro(LocalDate.now());
 
+		pacienteService.create(paciente1);
+		Assertions.assertTrue(paciente1.getIdPaciente() > 0);
+		System.out.println("Cadastrando o paciente " + paciente1.getNome() + " com o ID " + paciente1.getIdPaciente());
+	}
+
+	@Test
 	public void atualizarCadastroPaciente() throws SQLException {
 		ImplPacienteDaoH2 pacienteDao = new ImplPacienteDaoH2();
 

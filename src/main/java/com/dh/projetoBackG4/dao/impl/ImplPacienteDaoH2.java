@@ -57,7 +57,8 @@ public class ImplPacienteDaoH2 implements IDao<Paciente> {
     @Override
     public Paciente update(Paciente paciente) throws SQLException {
         Connection connection = null;
-//        String SQLUpdate = String.format("UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ?, dataCadastro = ? WHERE idPaciente = ?;");
+//
+        String SQLUpdate = "UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ?, dataCadastro = ? WHERE idPaciente = ?;";
 //
 //        PreparedStatement preparedStatement = connection.prepareStatement(SQLUpdate);
 //        preparedStatement.setString(1, paciente.getNome());
@@ -66,20 +67,31 @@ public class ImplPacienteDaoH2 implements IDao<Paciente> {
 //        preparedStatement.setString(4,paciente.getEndereco());
 //        preparedStatement.setDate(5,java.sql.Date.valueOf(paciente.getDataCadastro()));
 //        preparedStatement.setInt(6, paciente.getIdPaciente());
-
-        String SQLUpdate = String.format("UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ?, dataCadastro = ?) VALUES('%s', '%s','%s','%s', '%s') WHERE idPaciiente = ?;",
-                paciente.getNome(), paciente.getSobrenome(),paciente.getRg(), paciente.getEndereco(), paciente.getDataCadastro(), paciente.getIdPaciente());
+//
+//        String SQLUpdate = ("UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ? WHERE idPaciente = ?;",
+//        paciente.getNome(), paciente.getSobrenome(),paciente.getRg(), paciente.getEndereco(), paciente.getDataCadastro());
+//
 
         try{
             connection = getConnection();
-            Statement statement = connection.createStatement();
+//            Statement statement = connection.createStatement();
 
-            statement.execute(SQLUpdate);
+//            String SQLUpdate = "UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ?, dataCadastro = ? WHERE idPaciente = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLUpdate);
+            preparedStatement.setString(1, paciente.getNome());
+            preparedStatement.setString(2,paciente.getSobrenome());
+            preparedStatement.setString(3,paciente.getRg());
+            preparedStatement.setString(4,paciente.getEndereco());
+            preparedStatement.setDate(5,java.sql.Date.valueOf(paciente.getDataCadastro()));
+            preparedStatement.setInt(6, paciente.getIdPaciente());
+
+            preparedStatement.execute();
+
+//            statement.execute(SQLUpdate);
+            connection.close();
 
         }catch (Exception e){
             e.printStackTrace();
-        }finally {
-            connection.close();
         }
 
         return paciente;
