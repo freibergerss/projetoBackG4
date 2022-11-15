@@ -12,4 +12,9 @@ public class PacienteService {
         IDao<Paciente> pacienteDao = new ImplPacienteDaoH2();
         return pacienteDao.create(paciente);
     }
+
+    public Paciente update(Paciente paciente) throws SQLException{
+        IDao<Paciente> pacienteDao = new ImplPacienteDaoH2();
+        return pacienteDao.update(paciente);
+    }
 }
