@@ -2,7 +2,7 @@ package com.dh.projetoBackG4.dao.impl;
 
 import com.dh.projetoBackG4.dao.ConfigJDBC;
 import com.dh.projetoBackG4.dao.IDao;
-import model.Dentista;
+import com.dh.projetoBackG4.model.Dentista;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

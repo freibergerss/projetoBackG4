@@ -1,4 +1,4 @@
-package model;
+package com.dh.projetoBackG4.model;
 
 import java.time.LocalDate;
 import java.util.Date;
