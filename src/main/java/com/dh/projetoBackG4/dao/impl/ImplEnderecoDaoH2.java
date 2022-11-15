@@ -2,7 +2,7 @@ package com.dh.projetoBackG4.dao.impl;
 
 import com.dh.projetoBackG4.dao.ConfigJDBC;
 import com.dh.projetoBackG4.dao.IDao;
-import model.Endereco;
+import com.dh.projetoBackG4.model.Endereco;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

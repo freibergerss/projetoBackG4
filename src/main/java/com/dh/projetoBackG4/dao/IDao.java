@@ -1,7 +1,5 @@
 package com.dh.projetoBackG4.dao;
 
-import model.Paciente;
-
 import java.sql.SQLException;
 import java.util.Optional;
 

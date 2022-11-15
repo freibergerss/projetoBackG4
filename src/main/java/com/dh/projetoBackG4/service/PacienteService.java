@@ -2,7 +2,7 @@ package com.dh.projetoBackG4.service;
 
 import com.dh.projetoBackG4.dao.IDao;
 import com.dh.projetoBackG4.dao.impl.ImplPacienteDaoH2;
-import model.Paciente;
+import com.dh.projetoBackG4.model.Paciente;
 
 import java.sql.SQLException;
 

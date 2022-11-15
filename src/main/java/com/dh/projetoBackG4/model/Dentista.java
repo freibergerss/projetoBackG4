@@ -1,4 +1,4 @@
-package model;
+package com.dh.projetoBackG4.model;
 
 public class Dentista {
     private String nome;
