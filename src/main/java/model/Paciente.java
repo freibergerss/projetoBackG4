@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Paciente {
 
+    private int idPaciente;
     private String nome;
     private String sobrenome;
     private String rg;
@@ -15,12 +16,21 @@ public class Paciente {
 
     }
 
-    public Paciente(String nome, String sobrenome, String rg, String endereco, LocalDate dataCadastro) {
+    public Paciente(int id, String nome, String sobrenome, String rg, String endereco, LocalDate dataCadastro) {
+        this.idPaciente = idPaciente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.rg = rg;
         this.endereco = endereco;
         this.dataCadastro = dataCadastro;
+    }
+
+    public int getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getNome() {
