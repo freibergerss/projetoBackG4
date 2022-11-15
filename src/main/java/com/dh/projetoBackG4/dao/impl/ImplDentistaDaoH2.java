@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class ImplDentistaDaoH2 implements IDao<Dentista> {
 
@@ -18,12 +19,12 @@ public class ImplDentistaDaoH2 implements IDao<Dentista> {
     private ConfigJDBC configJDBC;
 
     private Connection getConnection() throws SQLException, ClassNotFoundException {
-        configJDBC = new ConfigJDBC("org.h2.Driver", "jdbc:h2:~/odonto;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM 'create.sql'", "g4","");
+        configJDBC = new ConfigJDBC("org.h2.Driver", "jdbc:h2:~/clinica;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM 'create.sql'", "sa","");
         return configJDBC.getConnection();
     }
 
     @Override
-    public Dentista salvar(Dentista dentista) throws SQLException {
+    public Dentista create(Dentista dentista) throws SQLException {
         Connection connection = null;
         String SQLInsert = String.format("INSERT INTO cadastro(nome, sobrenome, idDentista) VALUES ('%s', '%s', '%s')",
                 dentista.getNome(), dentista.getSobrenome(), dentista.getIdDentista());
@@ -55,9 +56,15 @@ public class ImplDentistaDaoH2 implements IDao<Dentista> {
     }
 
     @Override
-    public Dentista create(Dentista dentista) throws SQLException {
-        return null;
+    public void delete(int T) {
+        System.out.println("Funcionalidade não disponível");
     }
+
+    @Override
+    public Optional<Dentista> buscarPorId(int T) throws SQLException {
+        return Optional.empty();
+    }
+
 
     @Override
     public Dentista update(Dentista dentista) throws SQLException {

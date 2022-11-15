@@ -21,14 +21,6 @@ public class ImplPacienteDaoH2 implements IDao<Paciente> {
     @Override
     public Paciente create(Paciente paciente) throws SQLException {
         Connection connection = null;
-//        String SQLInsert = String.format("INSERT INTO pacientes(nome, sobrenome, rg, endereco, dataCadastro) VALUES(?, ?, ?, ?, ?");
-
-//        PreparedStatement preparedStatement = connection.prepareStatement(SQLInsert, Statement.RETURN_GENERATED_KEYS);
-//        preparedStatement.setString(1, paciente.getNome());
-//        preparedStatement.setString(2,paciente.getSobrenome());
-//        preparedStatement.setString(3,paciente.getRg());
-//        preparedStatement.setString(4,paciente.getEndereco());
-//        preparedStatement.setDate(3,java.sql.Date.valueOf(paciente.getDataCadastro()));
 
         String SQLInsert = String.format("INSERT INTO pacientes(nome, sobrenome, rg, endereco, dataCadastro) VALUES('%s', '%s','%s','%s', '%s')",
         paciente.getNome(), paciente.getSobrenome(),paciente.getRg(), paciente.getEndereco(), paciente.getDataCadastro());
@@ -98,7 +90,7 @@ public class ImplPacienteDaoH2 implements IDao<Paciente> {
     }
 
     @Override
-    public void deletePaciente(int idPaciente) {
+    public void delete(int idPaciente) {
 
     }
 
