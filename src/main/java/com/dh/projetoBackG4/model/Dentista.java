@@ -1,4 +1,4 @@
-package model;
+package com.dh.projetoBackG4.model;
 
 public class Dentista {
     private String nome;
@@ -9,6 +9,11 @@ public class Dentista {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.idDentista = idDentista;
+    }
+
+    public Dentista(String nome, String sobrenome) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
     }
 
     public String getNome() {
