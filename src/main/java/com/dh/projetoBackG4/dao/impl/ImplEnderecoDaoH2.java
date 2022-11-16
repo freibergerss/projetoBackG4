@@ -2,19 +2,17 @@ package com.dh.projetoBackG4.dao.impl;
 
 import com.dh.projetoBackG4.dao.ConfigJDBC;
 import com.dh.projetoBackG4.dao.IDao;
-import model.Endereco;
+import com.dh.projetoBackG4.model.Endereco;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Optional;
-import java.util.logging.Logger;
+
 
 public class ImplEnderecoDaoH2 implements IDao<Endereco> {
 
-    //------PORQUE TIVE QUE COLOCAR O String.valueOf NO LOGGER?????------
-    final static Logger log = Logger.getLogger(String.valueOf(ImplEnderecoDaoH2.class));
+    final static Logger log = LoggerFactory.getLogger(ImplEnderecoDaoH2.class);
 
     private ConfigJDBC configJDBC;
 
@@ -35,6 +33,7 @@ public class ImplEnderecoDaoH2 implements IDao<Endereco> {
             connection = getConnection();
             Statement statement = connection.createStatement();
 
+            log.info("Cadastrando novo endereço");
             statement.execute(SQLInsert, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
 
@@ -45,8 +44,7 @@ public class ImplEnderecoDaoH2 implements IDao<Endereco> {
 
         } catch (Exception e) {
 
-            //------NÃO ESTOU CONSEGUINDO APLICAR "log.error" ???------
-            log.info("Erro ao processar banco de dados");
+            log.error("Erro ao processar banco de dados");
             e.printStackTrace();
 
         }finally {
@@ -58,22 +56,79 @@ public class ImplEnderecoDaoH2 implements IDao<Endereco> {
     }
 
         @Override
-    public Endereco update(Endereco endereco) throws SQLException {
+    public Endereco update(Endereco endereco) throws SQLException{
+        Connection connection = null;
 
+        String UPDATE = "UPDATE endereco SET rua=?, numero=?, bairro=?, cidade=?, estado=? WHERE idEndereco = ?;";
 
-        return null;
+        try{
+            log.info("Abrindo conexão com banco de dados");
+            connection = getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setString(1, endereco.getRua());
+            preparedStatement.setInt(2, endereco.getNumero());
+            preparedStatement.setString(3, endereco.getBairro());
+            preparedStatement.setString(4, endereco.getCidade());
+            preparedStatement.setString(5, endereco.getEstado());
+            preparedStatement.setInt(6, endereco.getidEndereco());
+
+            log.info("Atualizando dados");
+            preparedStatement.executeUpdate();
+
+        }catch(Exception e){
+            log.error("Erro ao processar banco de dados");
+            e.printStackTrace();
+
+        }finally {
+            log.info("Fechando conexão com banco de dados");
+            connection.close();
+        }
+
+        return endereco;
     }
+
 
     @Override
-    public void delete(int T) {
-
+    public void delete(int idEndereco) {
+        System.out.println("Funcionalidade não disponível");
     }
+
 
     @Override
-    public Optional<Endereco> buscarPorId(int T) throws SQLException {
-        return Optional.empty();
+    public Optional<Endereco> buscarPorId(int idEndereco) throws SQLException {
+
+        Connection connection = null;
+
+        String QUERY = "SELECT idEndereco, rua, numero, bairro, cidade, estado FROM endereco WHERE idEndereco = ?";
+
+        Endereco endereco = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, idEndereco);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int key = resultSet.getInt("idEndereco");
+                String rua = resultSet.getString("rua");
+                Integer numero = resultSet.getInt("numero");
+                String bairro = resultSet.getString("bairro");
+                String cidade = resultSet.getString("cidade");
+                String estado = resultSet.getString("estado");
+
+                endereco = new Endereco(key, rua, numero, bairro, cidade, estado);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //SERA QUE ADD UM FINALLY P/ FECHAR A CONEXÃO?
+
+        return Optional.ofNullable(endereco);
     }
-
-
 
 }
