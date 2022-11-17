@@ -2,7 +2,7 @@ package com.dh.projetoBackG4.dao.impl;
 
 import com.dh.projetoBackG4.dao.ConfigJDBC;
 import com.dh.projetoBackG4.dao.IDao;
-import model.Paciente;
+import com.dh.projetoBackG4.model.Paciente;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -47,10 +47,10 @@ public class ImplPacienteDaoH2 implements IDao<Paciente> {
     }
 
     @Override
-    public Paciente update(Paciente paciente) throws SQLException {
+    public Paciente update(Paciente paciente){
         Connection connection = null;
 //
-        String SQLUpdate = "UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ?, dataCadastro = ? WHERE idPaciente = ?;";
+        String SQLUpdate = ("UPDATE pacientes SET nome = ?, sobrenome = ?, rg = ?, endereco = ?, dataCadastro = ? WHERE idPaciente = ?");
 //
 //        PreparedStatement preparedStatement = connection.prepareStatement(SQLUpdate);
 //        preparedStatement.setString(1, paciente.getNome());
@@ -77,7 +77,7 @@ public class ImplPacienteDaoH2 implements IDao<Paciente> {
             preparedStatement.setDate(5,java.sql.Date.valueOf(paciente.getDataCadastro()));
             preparedStatement.setInt(6, paciente.getIdPaciente());
 
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
 
 //            statement.execute(SQLUpdate);
             connection.close();

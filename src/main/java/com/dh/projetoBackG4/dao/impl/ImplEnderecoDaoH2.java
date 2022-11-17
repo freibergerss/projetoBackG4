@@ -5,7 +5,6 @@ import com.dh.projetoBackG4.dao.IDao;
 import com.dh.projetoBackG4.model.Endereco;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.*;
 import java.util.Optional;
 

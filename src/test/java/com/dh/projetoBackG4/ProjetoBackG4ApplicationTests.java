@@ -82,12 +82,14 @@ class ProjetoBackG4ApplicationTests {
 		System.out.println(paciente.getEndereco());
 		System.out.println(paciente.getDataCadastro());
 
-		paciente.setNome("Sabrina");
+		paciente.setIdPaciente(1);
+		paciente.setNome("Sabrina2");
 		paciente.setSobrenome("Freiberg");
 		paciente.setRg("12345698-7");
 		paciente.setEndereco("Rua da Amizade - 16");
 		paciente.setDataCadastro(LocalDate.of(2022,11,15));
-
+    
+		System.out.println(paciente.getIdPaciente());
 		System.out.println(paciente.getNome());
 		System.out.println(paciente.getSobrenome());
 		System.out.println(paciente.getRg());
