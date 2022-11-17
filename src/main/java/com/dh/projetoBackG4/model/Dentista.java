@@ -11,6 +11,12 @@ public class Dentista {
         this.idDentista = idDentista;
     }
 
+
+    public Dentista(String nome, String sobrenome) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+    }
+
     public String getNome() {
         return nome;
     }
