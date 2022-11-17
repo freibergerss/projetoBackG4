@@ -16,7 +16,7 @@
 de consultas para uma clínica odontológica. Os requisitos que devem ser
 atendidos são os seguintes:</p>
  
-<h3>🦷 Administração de dados odontológicos</h3><
+<h3>🦷 Administração de dados odontológicos</h3>
 <p>✏️ Adicionar e modificar os dados dos dentistas.</p>
 <p>📝 Registrar nome, sobrenome e matrícula de cadastro.</p>
 
